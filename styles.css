@@ -1,0 +1,514 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    touch-action: manipulation;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Header */
+.header {
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.logo-container {
+    margin-bottom: 15px;
+}
+
+.main-logo {
+    height: 120px;
+    width: auto;
+}
+
+.nav {
+    background: #f8f9fa;
+    padding: 10px 0;
+}
+
+.nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 10px;
+    display: inline-block;
+    min-height: 44px;
+    transition: color 0.3s;
+}
+
+.nav a:hover,
+.nav a.active {
+    color: #007bff;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #f0faff 0%, #e6f0ff 100%);
+    min-height: 70vh;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.dekker-logo {
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.hero-content h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: #003087;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    min-height: 44px;
+    line-height: 1.5;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn.primary {
+    background: #007bff;
+    color: #fff;
+}
+
+.btn.secondary {
+    background: #00b7eb;
+    color: #fff;
+}
+
+.btn.tertiary {
+    background: #003087;
+    color: #fff;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.hero-slider {
+    flex: 1;
+    position: relative;
+    max-width: 500px;
+}
+
+.slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 300px;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.slide.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Features Section */
+.features {
+    padding: 30px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #003087;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.feature-card {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.feature-benefit {
+    font-size: 14px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.feature-benefit::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.conditions {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Repair Section */
+.repair {
+    padding: 30px 20px;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.repair h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #003087;
+}
+
+.repair p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.repair-benefits {
+    list-style: none;
+    max-width: 500px;
+    margin: 0 auto 20px;
+    text-align: left;
+}
+
+.repair-benefits li {
+    font-size: 14px;
+    margin-bottom: 8px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.repair-benefits li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Quote Section */
+.quote {
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #007bff 0%, #00b7eb 100%);
+    color: #fff;
+    text-align: center;
+}
+
+.quote-content {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.quote h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.quote p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.quote .btn {
+    background: #fff;
+    color: #007bff;
+}
+
+/* Footer */
+.footer {
+    background: #003087;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-logo .dekker-logo {
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.footer-logo p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.homepage-link {
+    color: #00b7eb;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.homepage-link:hover {
+    text-decoration: underline;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: #00b7eb;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .header {
+        padding: 10px;
+    }
+
+    .main-logo {
+        height: 100px;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav a {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .hero {
+        flex-direction: column;
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .hero-content {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .dekker-logo {
+        height: 40px;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .hero-slider {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .slider {
+        height: 200px;
+    }
+
+    .features {
+        padding: 20px;
+    }
+
+    .features h2 {
+        font-size: 24px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        padding: 10px;
+    }
+
+    .feature-card h3 {
+        font-size: 18px;
+    }
+
+    .feature-benefit {
+        padding-left: 0;
+    }
+
+    .feature-benefit::before {
+        display: none;
+    }
+
+    .conditions {
+        font-size: 10px;
+    }
+
+    .repair {
+        padding: 20px;
+    }
+
+    .repair h2 {
+        font-size: 24px;
+    }
+
+    .repair p {
+        font-size: 14px;
+    }
+
+    .repair-benefits {
+        text-align: center;
+    }
+
+    .repair-benefits li {
+        padding-left: 0;
+    }
+
+    .repair-benefits li::before {
+        display: none;
+    }
+
+    .quote {
+        padding: 20px;
+    }
+
+    .quote h2 {
+        font-size: 24px;
+    }
+
+    .quote p {
+        font-size: 14px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-logo {
+        height: 80px;
+    }
+
+    .hero-content h1 {
+        font-size: 24px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+
+    .slider {
+        height: 150px;
+    }
+
+    .features h2,
+    .repair h2,
+    .quote h2 {
+        font-size: 20px;
+    }
+
+    .feature-card h3 {
+        font-size: 16px;
+    }
+
+    .feature-benefit,
+    .repair-benefits li {
+        font-size: 12px;
+    }
+}
