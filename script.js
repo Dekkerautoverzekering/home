@@ -13,8 +13,10 @@ function showSlide(index) {
 
         slides.forEach((slide, i) => {
             slide.classList.toggle('active', i === slideIndex);
+            if (i === slideIndex) {
+                console.log(`Slider: Afbeelding ${slide.alt} geladen`);
+            }
         });
-        console.log(`Slider: Toon slide ${slideIndex + 1}/${slides.length}`);
     } catch (error) {
         console.error('Fout in showSlide:', error);
     }
@@ -25,11 +27,29 @@ function nextSlide() {
     showSlide(slideIndex);
 }
 
-// Start de slider
+// Preload afbeeldingen en start slider
+function preloadImages() {
+    let loaded = 0;
+    slides.forEach((slide, i) => {
+        const img = new Image();
+        img.src = slide.src;
+        img.onload = () => {
+            loaded++;
+            if (loaded === slides.length) {
+                console.log(`Slider: Alle ${slides.length} afbeeldingen geladen`);
+                showSlide(slideIndex);
+                setInterval(nextSlide, 3200); // ~3 seconden
+            }
+        };
+        img.onerror = () => {
+            console.warn(`Slider: Kan ${slide.src} niet laden`);
+        };
+    });
+}
+
 if (slides.length > 0) {
     console.log(`Slider: ${slides.length} slides gevonden`);
-    showSlide(slideIndex);
-    setInterval(nextSlide, 3000); // Wissel elke 3 seconden
+    preloadImages();
 } else {
     console.warn('Geen slides gevonden. Controleer de images-map.');
 }
