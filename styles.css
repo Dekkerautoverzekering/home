@@ -33,6 +33,7 @@ h1, h2, h3 {
 
 .logo-container {
     margin-bottom: 15px;
+    justify-content: center; /* Centreert logo horizontaal */
 }
 
 .main-logo {
