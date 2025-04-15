@@ -1,71 +1,44 @@
-// Slider
-let slideIndex = 0;
-const slides = document.querySelectorAll('.slide');
+console.log('JS: Script geladen');
 
-function showSlide(index) {
-    try {
-        if (slides.length === 0) {
-            console.warn('Geen slides beschikbaar');
-            return;
-        }
-        if (index >= slides.length) slideIndex = 0;
-        if (index < 0) slideIndex = slides.length - 1;
+// Hamburger-menu
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('.nav');
 
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === slideIndex);
-            if (i === slideIndex) {
-                console.log(`Slider: Afbeelding ${slide.alt} geladen`);
+if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+        console.log('Hamburger: Geklikt');
+        nav.classList.toggle('active');
+        hamburger.textContent = nav.classList.contains('active') ? '✕' : '☰';
+    });
+} else {
+    console.warn('Hamburger of nav niet gevonden');
+}
+
+// Car selector
+const carButtons = document.querySelectorAll('.car-btn');
+const carImages = document.querySelectorAll('.car-img');
+
+if (carButtons.length && carImages.length) {
+    carButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const car = button.dataset.car;
+            console.log(`Car: Geklikt op ${car}`);
+
+            // Update knoppen
+            carButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Update afbeeldingen
+            carImages.forEach(img => img.classList.remove('active'));
+            const targetImg = document.querySelector(`.car-img[data-car="${car}"]`);
+            if (targetImg) {
+                targetImg.classList.add('active');
+                console.log(`Car: Toon ${targetImg.alt}`);
+            } else {
+                console.warn(`Car: Afbeelding voor ${car} niet gevonden`);
             }
         });
-    } catch (error) {
-        console.error('Fout in showSlide:', error);
-    }
-}
-
-function nextSlide() {
-    slideIndex++;
-    showSlide(slideIndex);
-}
-
-// Preload afbeeldingen en start slider
-function preloadImages() {
-    let loaded = 0;
-    slides.forEach((slide, i) => {
-        const img = new Image();
-        img.src = slide.src;
-        img.onload = () => {
-            loaded++;
-            if (loaded === slides.length) {
-                console.log(`Slider: Alle ${slides.length} afbeeldingen geladen`);
-                showSlide(slideIndex);
-                setInterval(nextSlide, 3200); // ~3 seconden
-            }
-        };
-        img.onerror = () => {
-            console.warn(`Slider: Kan ${slide.src} niet laden`);
-        };
     });
-}
-
-if (slides.length > 0) {
-    console.log(`Slider: ${slides.length} slides gevonden`);
-    preloadImages();
 } else {
-    console.warn('Geen slides gevonden. Controleer de images-map.');
+    console.warn('Car: Knoppen of afbeeldingen niet gevonden');
 }
-
-// Smooth Scroll for Navigation (exclusief Offerte)
-document.querySelectorAll('.nav a:not([href*="offerteverzoek"])').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Update active class
-        document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
